@@ -6,12 +6,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-interface ModelDropdownProps {
+interface ModelDropDownProps {
   selectedModel: string;
   setSelectedModel: (model: string) => void;
 }
 
-export const ModelDropdown: React.FC<ModelDropdownProps> = ({ selectedModel, setSelectedModel }) => {
+export const ModelDropDown: React.FC<ModelDropDownProps> = ({ selectedModel, setSelectedModel }) => {
   const models = ['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini'];
 
   return (
