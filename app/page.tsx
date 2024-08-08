@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Container from "./components/Container"
 
 function Pin(props: JSX.IntrinsicAttributes & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
@@ -13,7 +14,8 @@ function Pin(props: JSX.IntrinsicAttributes & React.AnchorHTMLAttributes<HTMLAnc
 export default function Home() {
   return (
     <main className="flex flex-1 w-full flex-col items-center justify-center text-center">
-      <div className="shadow-sm font-semibold mb-4 first-letter:shadow inline-flex rounded-full px-4 py-1 md:py-2 text-xs md:text-sm leading-6 text-zinc-500 dark:text-zinc-400 hover:ring-gray-900/20 bg-white dark:bg-zinc-800 ring-1 ring-zinc-900/10 backdrop-blur dark:ring-white/20 dark:hover:ring-white/30">
+      <Container>
+        <div className="shadow-sm font-semibold mb-4 first-letter:shadow inline-flex rounded-full px-4 py-1 md:py-2 text-xs md:text-sm leading-6 text-zinc-500 dark:text-zinc-400 hover:ring-gray-900/20 bg-white dark:bg-zinc-800 ring-1 ring-zinc-900/10 backdrop-blur dark:ring-white/20 dark:hover:ring-white/30">
           Introducing TubeTitles.AI
         </div>
         <h1 className="text-balance md:text-6xl md:leading-[4.4rem] text-4xl font-bold text-zinc-900 dark:text-white tracking-tighter">
@@ -55,6 +57,7 @@ export default function Home() {
           </Pin>
           {' '}application that generates captivating YouTube titles. Just follow the 9 steps below to generate optimized, attention-grabbing titles to enhance your video's reach.
         </p>
+      </Container>
     </main>
   );
 }
