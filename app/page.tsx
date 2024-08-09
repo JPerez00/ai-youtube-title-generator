@@ -110,7 +110,7 @@ const Home = () => {
             />
             Open AI
           </Pin>
-          {' '}application that generates captivating YouTube titles. Just follow the 9 steps below to generate optimized, attention-grabbing titles to enhance your video's reach.
+          {' '}application that generates captivating YouTube titles. Just follow the 9 steps below to generate optimized, attention-grabbing titles to enhance your video&apos;s reach.
         </p>
       </Container>
       <Container className='border-t my-6 border-zinc-400/20'>
