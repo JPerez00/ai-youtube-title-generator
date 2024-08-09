@@ -1,22 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Introducing TubeTitles.AI
 
-## Getting Started
+![Image](/public/project-banner.png)
 
-First, run the development server:
+## Your AI-Powered Solution For Generating Unique & Captivating YouTube Titles.
+
+TubeTitles.AI is a [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/[) & [Tailwind CSS](https://tailwindcss.com/) application that uses the [Open AI](https://openai.com/) API to generate captivating YouTube titles. Just follow the 9 steps to generate optimized, attention-grabbing titles to enhance your video's reach.
+
+## Live Demo:
+
+[https://tube-titles-ai.vercel.app/](https://tube-titles-ai.vercel.app/)
+
+
+## Main Features:
+
+- AI Model Selection (Open AI API).
+- User-friendly Interface.
+- Customizable Inputs.
+- Skeleton Loading Animation.
+- Clipboard Functionality.
+- Dialog Notification (Headless UI).
+- [Next-Themes](https://github.com/pacocoursey/next-themes) Light & Dark Modes With Toggle.
+
+
+## Open AI API:
+
+This project needs an Open AI API key. Head over to [there](https://openai.com/) and create an API key id you don't have one already.
+
+## Clone & Run Locally
+
+First, execute create-next-app with npx to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/JPerez00/ai-youtube-title-generator your-project-name-here
+```
+
+Create a `.env.local` file in the root directory of your project and add your OpenAI API key:
+
+```bash
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Clone & Deploy
+
+When deploying the project to Vercel, add the same environment variable to your Vercel project.
+
+Navigate to your Vercel dashboard, select your project, go to the "Settings" tab, and then to "Environment Variables."
+
+Add OPENAI_API_KEY as the key and your OpenAI API key as the value. This ensures the API key is securely accessible both locally and in the deployed environment.
+
+```bash
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+## Clone & Deploy
+
+First, execute create-next-app with npm to bootstrap the example:
+
+```bash
+npx create-next-app --example https://github.com/JPerez00/ai-youtube-title-generator your-project-name-here
+```
+
+Then run the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Start Editing
+
+- Edit the Main Home page by modifying `app/page.tsx`.
+- Edit all the dropdown menus by modifiying `app/components/....tsx`,
+- Edit API routes for OpenAI by modifiying `app/api/generate-titles/route.ts`
+
+## Font
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
@@ -28,9 +94,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
