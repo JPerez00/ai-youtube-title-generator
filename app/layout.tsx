@@ -26,9 +26,9 @@ export default function RootLayout({
     className={cx(inter.className)}
     suppressHydrationWarning
     >
-    <body className="text-black bg-zinc-100 dark:text-white dark:bg-zinc-900 antialiased max-w-2xl mx-4 mt-8 lg:mx-auto">
+    <body className="text-black bg-zinc-100 dark:text-white dark:bg-zinc-900 antialiased max-w-3xl mx-4 mt-8 lg:mx-auto">
       <ThemeProvider>
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+        <main className="flex-auto mt-6 flex flex-col px-2 md:px-0">
           <Navbar />
           {children}
         </main>

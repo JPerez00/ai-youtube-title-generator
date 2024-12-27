@@ -71,9 +71,9 @@ const Home = () => {
     <main className="flex flex-1 w-full flex-col items-center justify-center text-center">
       <Container>
         <div className="shadow-sm font-semibold mb-4 first-letter:shadow inline-flex rounded-full px-4 py-1 md:py-2 text-xs md:text-sm leading-6 text-zinc-500 dark:text-zinc-400 hover:ring-gray-900/20 bg-white dark:bg-zinc-800 ring-1 ring-zinc-900/10 backdrop-blur dark:ring-white/20 dark:hover:ring-white/30">
-          Introducing TubeTitles.AI
+          Introducing TubeTitles
         </div>
-        <h1 className="text-balance md:text-6xl md:leading-[4.4rem] text-4xl font-bold text-zinc-900 dark:text-white tracking-tighter">
+        <h1 className="text-balance md:text-6xl md:leading-[4.6rem] text-4xl font-bold text-zinc-900 dark:text-white tracking-tighter">
           Your AI-Powered Solution For Generating Unique & Captivating{' '}
           <span className="relative whitespace-nowrap text-red-500">
             <svg
@@ -87,7 +87,7 @@ const Home = () => {
             <span className="relative font-extrabold">YouTube Titles</span>
           </span>
         </h1>
-        <p className="text-balance mt-8 text-center text-zinc-600 dark:text-zinc-300 md:text-lg">
+        <p className="text-balance mt-6 text-center text-zinc-600 dark:text-zinc-300 md:text-lg">
           This is a{' '}
           <Pin href="https://nextjs.org">
             <Image

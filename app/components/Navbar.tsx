@@ -12,7 +12,7 @@ export function Navbar() {
       <div className="flex items-center space-x-2 mt-1">
         <Link href="/" aria-label="Home">
           <Image src="tubetitle.svg" width={36} height={36} alt="TubeTitles logo" className='-mt-1 inline-flex items-center justify-center drop-shadow-sm' />
-          <h2 className='items-center justify-center inline-flex text-lg font-semibold tracking-tighter text-zinc-700 dark:text-zinc-200'>TubeTitles.AI</h2>
+          <h2 className='items-center justify-center inline-flex text-xl font-bold tracking-tight text-zinc-700 dark:text-zinc-200'>TubeTitles</h2>
         </Link>
       </div>
       <div className="flex items-center gap-x-2">
