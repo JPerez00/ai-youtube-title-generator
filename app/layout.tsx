@@ -5,15 +5,14 @@ import { Navbar } from "./components/Navbar";
 import ThemeProvider from "./components/ThemeProvider"
 import { Footer } from "./components/Footer";
 import { Analytics } from "@vercel/analytics/react"
+import clsx from 'clsx';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TubeTitles.AI",
+  title: "TubeTitles",
   description: "Your AI-powered solution for generating unique and captivating YouTube titles.",
 };
-
-const cx = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
 export default function RootLayout({
   children,
@@ -21,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html 
-    lang="en"
-    className={cx(inter.className)}
-    suppressHydrationWarning
+    <html
+      lang="en"
+      className={clsx(inter.className)}
+      suppressHydrationWarning
     >
     <body className="text-black bg-zinc-100 dark:text-white dark:bg-zinc-900 antialiased max-w-3xl mx-4 mt-8 lg:mx-auto">
       <ThemeProvider>
