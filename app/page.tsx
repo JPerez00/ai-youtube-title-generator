@@ -12,6 +12,7 @@ import LanguageDropDown from './components/LanguageDropDown';
 import LoadingDots from './components/LoadingDots';
 import { ModelDropDown } from './components/ModelDropDown';
 import Container from './components/Container';
+import Skeleton from './components/Skeleton';
 
 const Home = () => {
   const [idea, setIdea] = useState('');
@@ -30,20 +31,41 @@ const Home = () => {
   const generateTitles = async (e: React.MouseEvent) => {
     e.preventDefault();
     setLoading(true);
-    setGeneratedTitles(null); // Reset generated Titles
-
-    const response = await fetch('/api/generate-titles', { // API route
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ idea, tone, character, emoji, question, mood, language, model: selectedModel }),
-    });
-
-    const data = await response.json();
-    setGeneratedTitles(data.generatedTitles);
-    setLoading(false);
-  };
+    setGeneratedTitles(null);
+  
+    try {
+      const response = await fetch('/api/generate-titles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          idea,
+          tone,
+          character,
+          emoji,
+          question,
+          mood,
+          language,
+          model: selectedModel
+        })
+      });
+  
+      if (!response.ok) {
+        // If the server returned a 400 or 500, handle that
+        const errorData = await response.json();
+        console.error('API error:', errorData.message);
+        // Optionally set an error state here
+        return;
+      }
+  
+      const data = await response.json();
+      setGeneratedTitles(data.generatedTitles);
+    } catch (error) {
+      console.error('Network error:', error);
+      // Optionally set an error state here
+    } finally {
+      setLoading(false);
+    }
+  };  
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -57,15 +79,16 @@ const Home = () => {
     }
   }, [loading]);
 
-  function Pin(props: JSX.IntrinsicAttributes & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  function ExternalLink(props: JSX.IntrinsicElements['a']) {
     return (
       <a
         {...props}
         target="_blank"
-        className="mr-0.5 ml-0.5 inline-flex items-center rounded border border-zinc-300 bg-white p-1 text-sm leading-4 text-zinc-800 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
+        rel="noopener noreferrer"
+        className="mr-0.5 ml-0.5 inline-flex items-center rounded border border-zinc-300 bg-white p-1 text-sm leading-4 text-zinc-800 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
       />
     );
-  }
+  }  
 
   return (
     <main className="flex flex-1 w-full flex-col items-center justify-center text-center">
@@ -89,7 +112,7 @@ const Home = () => {
         </h1>
         <p className="text-balance mt-6 text-center text-zinc-600 dark:text-zinc-300 md:text-lg">
           This is a{' '}
-          <Pin href="https://nextjs.org">
+          <ExternalLink href="https://nextjs.org">
             <Image
               alt="Next.js logomark"
               src="/next-logo.svg"
@@ -98,9 +121,9 @@ const Home = () => {
               height="14"
             />
             Next.js
-          </Pin>
+          </ExternalLink>
           {' '}and{' '}
-          <Pin href="https://openai.com/">
+          <ExternalLink href="https://openai.com/">
             <Image
               alt="Open AI logomark"
               src="/openai-logomark.svg"
@@ -109,7 +132,7 @@ const Home = () => {
               height="14"
             />
             Open AI
-          </Pin>
+          </ExternalLink>
           {' '}application that generates captivating YouTube titles. Just follow the 9 steps below to generate optimized, attention-grabbing titles to enhance your video&apos;s reach.
         </p>
       </Container>
@@ -177,7 +200,7 @@ const Home = () => {
 
           {!loading && (
             <Button
-              className="rounded-xl font-medium px-4 py-3 sm:mt-10 mt-8 w-full bg-zinc-800 dark:bg-zinc-700 text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-zinc-600 data-[open]:bg-zinc-700 data-[focus]:outline-1 data-[focus]:outline-white transition-all"
+              className="rounded-xl font-medium px-4 py-4 sm:mt-10 mt-8 w-full bg-zinc-800 dark:bg-zinc-700 text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-zinc-600 data-[open]:bg-zinc-700 data-[focus]:outline-1 data-[focus]:outline-white transition-all"
               onClick={generateTitles}
             >
               Click To Generate YouTube Titles
@@ -185,7 +208,7 @@ const Home = () => {
           )}
           {loading && (
             <Button
-              className="rounded-xl font-medium px-4 py-3 sm:mt-10 mt-8 w-full bg-zinc-800 dark:bg-zinc-700 text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-zinc-600 data-[open]:bg-zinc-700 data-[focus]:outline-1 data-[focus]:outline-white transition-all"
+              className="rounded-xl font-medium px-4 py-4 sm:mt-10 mt-8 w-full bg-zinc-800 dark:bg-zinc-700 text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-zinc-600 data-[open]:bg-zinc-700 data-[focus]:outline-1 data-[focus]:outline-white transition-all"
               disabled
             >
               <LoadingDots color="white" style="large" />
@@ -193,24 +216,11 @@ const Home = () => {
           )}
         </div>
         <div className="mx-auto w-full space-y-10 my-10 mb-10" ref={resultsRef}>
-          {loading && (
-            <div role="status" className="mx-auto mt-20 mb-20 w-full p-6 space-y-10 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700 transition-all">
-              {[...Array(5)].map((_, index) => (
-                <div key={index} className="flex items-center justify-between pt-4">
-                  <div className="flex-1">
-                    <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
-                    <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-                  </div>
-                  <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
-                </div>
-              ))}
-              <span className="sr-only">Loading...</span>
-            </div>
-          )}
+        {loading && <Skeleton />}
           {!loading && generatedTitles && (
             <>
               <div className='mt-10'>
-                <h2 className="sm:text-5xl text-3xl font-bold mx-auto tracking-tighter text-zinc-800 dark:text-white">
+                <h2 className="sm:text-5xl text-3xl font-bold mx-auto tracking-tight text-zinc-800 dark:text-white">
                   Your Generated Titles:
                 </h2>
                 <p className="mt-5">
