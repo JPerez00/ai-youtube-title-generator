@@ -11,7 +11,35 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TubeTitles",
-  description: "Your AI-powered solution for generating unique and captivating YouTube titles.",
+  description:
+    "Your AI-powered solution for generating unique and captivating YouTube titles.",
+  openGraph: {
+    title: "TubeTitles",
+    description:
+      "Your AI-powered solution for generating unique and captivating YouTube titles.",
+    url: "https://tube-titles-ai.vercel.app/", 
+    siteName: "TubeTitles",
+    images: [
+      {
+        url: "/images/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TubeTitles",
+    description:
+      "Your AI-powered solution for generating unique and captivating YouTube titles.",
+    images: [
+      {
+        url: "/images/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
