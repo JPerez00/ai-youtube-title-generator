@@ -153,7 +153,7 @@ const Home = () => {
             onChange={(e) => setIdea(e.target.value)}
             rows={2}
             className="w-full px-4 py-2 rounded-lg border placeholder:text-zinc-300 placeholder:dark:text-zinc-500 dark:bg-zinc-800 border-zinc-300 dark:border-gray-700 shadow-sm focus:border-black focus:ring-black my-5 mb-6"
-            placeholder="ie: Becoming a software developer in 2024"
+            placeholder="ie: Becoming a software developer in 2025"
           />
           <div className="grid sm:grid-cols-2 grid-cols-1 gap-4 text-center">
             <div className="flex mb-5 items-center space-x-3">
