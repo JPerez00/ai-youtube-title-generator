@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useRef, useEffect, Fragment } from 'react';
-import { Dialog, Transition, Button } from '@headlessui/react';
+import { Dialog, Transition, Button, DialogPanel, DialogTitle } from '@headlessui/react';
 import ToneDropDown from './components/ToneDropDown';
 import CharacterDropDown from './components/CharacterDropDown';
 import EmojiDropDown from './components/EmojiDropDown';
@@ -24,7 +24,7 @@ const Home = () => {
   const [language, setLanguage] = useState('');
   const [loading, setLoading] = useState(false);
   const [generatedTitles, setGeneratedTitles] = useState<string[] | null>(null);
-  const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
+  const [selectedModel, setSelectedModel] = useState('gpt-4o-mini');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
 
@@ -53,7 +53,6 @@ const Home = () => {
         // If the server returned a 400 or 500, handle that
         const errorData = await response.json();
         console.error('API error:', errorData.message);
-        // Optionally set an error state here
         return;
       }
   
@@ -61,7 +60,6 @@ const Home = () => {
       setGeneratedTitles(data.generatedTitles);
     } catch (error) {
       console.error('Network error:', error);
-      // Optionally set an error state here
     } finally {
       setLoading(false);
     }
@@ -242,15 +240,15 @@ const Home = () => {
           )}
         </div>
       </Container>
-      <Transition.Root show={isDialogOpen} as={Fragment}>
+      <Transition show={isDialogOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10 focus:outline-none" onClose={() => setIsDialogOpen(false)}>
           <div className="fixed inset-0 bg-zinc-900 bg-opacity-75 transition-opacity" />
           <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4">
-              <Dialog.Panel className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl transition-all duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
-                <Dialog.Title as="h3" className="text-xl leading-6 font-semibold text-white">
+              <DialogPanel className="w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl transition-all duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
+                <DialogTitle as="h3" className="text-xl leading-6 font-semibold text-white">
                   Copied to clipboard!
-                </Dialog.Title>
+                </DialogTitle>
                 <div className="mt-4">
                   <p className="text-sm text-zinc-400">
                     This insanely great YouTube title has been successfully copied to your clipboard. What a marvel of modern engineering.
@@ -264,11 +262,11 @@ const Home = () => {
                     OK
                   </Button>
                 </div>
-              </Dialog.Panel>
+              </DialogPanel>
             </div>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition>
     </main>
   );
 };
